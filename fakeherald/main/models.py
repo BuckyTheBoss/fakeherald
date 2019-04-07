@@ -22,7 +22,3 @@ class Comment(models.Model):
 	pub_date = models.DateTimeField()
 	article = models.ForeignKey(Article, on_delete=models.CASCADE)
 	visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE, related_name='comments', blank=True, default=None, null=True)
- 
-
-
-# models.IntegerField()

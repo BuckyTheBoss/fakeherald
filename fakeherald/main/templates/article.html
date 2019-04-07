@@ -5,26 +5,32 @@
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-8">
-				<h2>{{article.title}}</h2>
+				<h2>{{article.title | title }}</h2>
 				<h4>{{article.author.name}}</h4>
 				<h4>{{article.pub_date}}</h4>
 				<p>{{article.content}}</p>
 				
-
 				{% for comment in article.comment_set.all %}
-					{{comment.text}}
-				{% endfor %}
-					<form method="POST">
-						<div class="form-group">
-							<label for="comment_text">Share your throughts:</label>
-							<textarea class="form-control" id="comment_text" rows="3"></textarea>
-						</div>
-						<button class="btn btn-md btn-secondary" type="submit">Submit</button>
-					</form>
-				
-			</div>
-			<div class="col-2"></div>
+					<div class="card">
+						<div class="card-body">
+							<blockquote class="blockquote mb-0">
+								<p>{{comment.text}}</p>
+							<footer class="blockquote-footer">{{comment.visitor.name}}, <cite title="Source Title">{{comment.pub_date | timesince}} ago</cite></footer>
+						</blockquote>
+					</div>
+				</div>
+			{% endfor %}
+			<form method="POST">
+				<div class="form-group">
+					<label for="comment_text">Share your thoughts:</label>
+					<textarea class="form-control" id="comment_text" rows="3"></textarea>
+				</div>
+				<button class="btn btn-md btn-secondary" type="submit">Submit</button>
+			</form>
+			
 		</div>
-		
+		<div class="col-2"></div>
 	</div>
+	
+</div>
 {% endblock %}
